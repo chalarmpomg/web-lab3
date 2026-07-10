@@ -7,13 +7,17 @@ const { requireAuth, requireGuest } = require('../middleware/auth');
 
 const router = express.Router();
 
-const gifUrl = "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ODAyamZybzZmY2N6enZubjk1OWR3c2JkbWZodXp2Z3dwdzhnN3l6ayZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/zIatAEDb9NwwAd3cYE/giphy.gif";
+const images = [
+  '/image/41500.jpg',
+  '/image/41524.jpg',
+  '/image/91657.jpg'
+];
 
 router.get('/', (req, res) => {
   res.render('pages/index', {
     title: 'หน้าแรก',
     user: req.session.user || null,
-    gifUrl,
+    images,
   });
 });
 
@@ -83,5 +87,4 @@ router.post('/logout', (req, res) => {
   req.destroySession();
   res.redirect('/');
 });
-
 module.exports = router;

@@ -2,58 +2,140 @@
 <html lang="th">
 <head>
   <%- include('../partials/head') %>
+
+  <style>
+    .image-slider {
+      width: 100%;
+      max-width: 900px;
+      height: 400px;
+      margin: 30px auto;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .image-slider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .image-slider img.active {
+      display: block;
+    }
+  </style>
 </head>
+
 <body>
   <%- include('../partials/bg-effects') %>
   <%- include('../partials/header') %>
 
   <main class="container">
+
     <section class="hero" data-animate>
+
       <div class="hero-badge">
         <span class="dot"></span>
         Online & Ready
       </div>
+
       <h1>
-        <span class="gradient-text" data-typing="ยินดีต้อนรับสู่ Lab3"></span><span class="typing-cursor"></span>
+        <span class="gradient-text" data-typing="ยินดีต้อนรับสู่ Lab3"></span>
+        <span class="typing-cursor"></span>
       </h1>
+
       <p>แอปพลิเคชันตัวอย่างด้วย Express, EJS และ Joi Validation</p>
 
+
+      <!-- Image Auto Slider -->
+      <section class="image-slider">
+        <% (images || []).forEach((img, index) => { %>
+          <img 
+            src="<%= img %>" 
+            class="<%= index === 0 ? 'active' : '' %>"
+            alt="slide image"
+          >
+        <% }) %>
+      </section>
+
+
       <% if (user) { %>
+
         <div class="alert alert-success" data-animate>
           ✨ สวัสดี, <strong><%= user.name %></strong>! คุณเข้าสู่ระบบแล้ว
         </div>
-        <a href="/dashboard" class="btn btn-primary" data-animate>🚀 ไปที่แดชบอร์ด</a>
+
+        <a href="/dashboard" class="btn btn-primary" data-animate>
+          🚀 ไปที่แดชบอร์ด
+        </a>
+
       <% } else { %>
+
         <div class="hero-actions" data-animate>
-          <a href="/login" class="btn btn-primary">🔐 เข้าสู่ระบบ</a>
-          <a href="/register" class="btn btn-secondary">✨ สมัครสมาชิก</a>
+          <a href="/login" class="btn btn-primary">
+            🔐 เข้าสู่ระบบ
+          </a>
+
+          <a href="/register" class="btn btn-secondary">
+            ✨ สมัครสมาชิก
+          </a>
         </div>
+
       <% } %>
+
     </section>
 
+
     <section class="features">
+
       <div class="feature-card reveal" data-tilt>
         <span class="feature-icon">⚡</span>
         <h3>Express.js</h3>
         <p>Web framework สำหรับ Node.js ที่รวดเร็วและยืดหยุ่น</p>
         <span class="feature-tag">Backend</span>
       </div>
+
+
       <div class="feature-card reveal" data-tilt>
         <span class="feature-icon">🎨</span>
         <h3>EJS</h3>
         <p>Template engine สำหรับสร้างหน้าเว็บแบบ dynamic</p>
         <span class="feature-tag">Views</span>
       </div>
+
+
       <div class="feature-card reveal" data-tilt>
         <span class="feature-icon">🛡️</span>
         <h3>Joi</h3>
         <p>ตรวจสอบความถูกต้องของข้อมูลอย่างละเอียด</p>
         <span class="feature-tag">Validation</span>
       </div>
+
     </section>
+
   </main>
+
 
   <%- include('../partials/footer') %>
   <%- include('../partials/scripts') %>
+
+
+  <script>
+    const slides = document.querySelectorAll('.image-slider img');
+    let currentSlide = 0;
+
+    if (slides.length > 0) {
+      setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+      }, 3000);
+    }
+  </script>
+
+
 </body>
 </html>
+
