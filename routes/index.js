@@ -7,10 +7,13 @@ const { requireAuth, requireGuest } = require('../middleware/auth');
 
 const router = express.Router();
 
+const gifUrl = "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ODAyamZybzZmY2N6enZubjk1OWR3c2JkbWZodXp2Z3dwdzhnN3l6ayZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/zIatAEDb9NwwAd3cYE/giphy.gif";
+
 router.get('/', (req, res) => {
   res.render('pages/index', {
     title: 'หน้าแรก',
     user: req.session.user || null,
+    gifUrl,
   });
 });
 
@@ -58,7 +61,10 @@ router.post('/register', requireGuest, validate(registerSchema, {
     return res.status(409).render('pages/register', {
       title: 'สมัครสมาชิก',
       error: result.error,
-      form: { name: req.body.name, email: req.body.email },
+      form: {
+        name: req.body.name,
+        email: req.body.email
+      },
     });
   }
 
