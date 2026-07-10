@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+  <%- include('../partials/bg-effects') %>
+  <%- include('../partials/header') %>
+
+  <main class="container">
+    <section class="dashboard-card" data-animate>
+      <div class="card-icon">📊</div>
+      <h1>แดชบอร์ด</h1>
+      <p class="subtitle">ยินดีต้อนรับ, <%= user.name %>! 👋</p>
+
+      <div class="dashboard-stats">
+        <div class="stat-box reveal">
+          <div class="stat-value" data-count="1">0</div>
+          <div class="stat-label">บัญชี</div>
+        </div>
+        <div class="stat-box reveal">
+          <div class="stat-value" data-count="3">0</div>
+          <div class="stat-label">เครื่องมือ</div>
+        </div>
+        <div class="stat-box reveal">
+          <div class="stat-value" data-count="100">0</div>
+          <div class="stat-label">% พร้อมใช้</div>
+        </div>
+      </div>
+
+      <div class="user-info">
+        <div class="info-row">
+          <span class="info-label">👤 ชื่อ</span>
+          <span class="info-value"><%= user.name %></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">📧 อีเมล</span>
+          <span class="info-value"><%= user.email %></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">🆔 User ID</span>
+          <span class="info-value info-id"><%= user.id %></span>
+        </div>
+      </div>
+
+      <div class="dashboard-actions">
+        <a href="/" class="btn btn-secondary">🏠 กลับหน้าแรก</a>
+        <form action="/logout" method="POST">
+          <button type="submit" class="btn btn-danger">🚪 ออกจากระบบ</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+  <%- include('../partials/scripts') %>
+</body>
+</html>

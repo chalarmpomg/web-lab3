@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+  <%- include('../partials/bg-effects') %>
+  <%- include('../partials/header') %>
+
+  <main class="container">
+    <section class="hero" data-animate>
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Online & Ready
+      </div>
+      <h1>
+        <span class="gradient-text" data-typing="ยินดีต้อนรับสู่ Lab3"></span><span class="typing-cursor"></span>
+      </h1>
+      <p>แอปพลิเคชันตัวอย่างด้วย Express, EJS และ Joi Validation</p>
+
+      <% if (user) { %>
+        <div class="alert alert-success" data-animate>
+          ✨ สวัสดี, <strong><%= user.name %></strong>! คุณเข้าสู่ระบบแล้ว
+        </div>
+        <a href="/dashboard" class="btn btn-primary" data-animate>🚀 ไปที่แดชบอร์ด</a>
+      <% } else { %>
+        <div class="hero-actions" data-animate>
+          <a href="/login" class="btn btn-primary">🔐 เข้าสู่ระบบ</a>
+          <a href="/register" class="btn btn-secondary">✨ สมัครสมาชิก</a>
+        </div>
+      <% } %>
+    </section>
+
+    <section class="features">
+      <div class="feature-card reveal" data-tilt>
+        <span class="feature-icon">⚡</span>
+        <h3>Express.js</h3>
+        <p>Web framework สำหรับ Node.js ที่รวดเร็วและยืดหยุ่น</p>
+        <span class="feature-tag">Backend</span>
+      </div>
+      <div class="feature-card reveal" data-tilt>
+        <span class="feature-icon">🎨</span>
+        <h3>EJS</h3>
+        <p>Template engine สำหรับสร้างหน้าเว็บแบบ dynamic</p>
+        <span class="feature-tag">Views</span>
+      </div>
+      <div class="feature-card reveal" data-tilt>
+        <span class="feature-icon">🛡️</span>
+        <h3>Joi</h3>
+        <p>ตรวจสอบความถูกต้องของข้อมูลอย่างละเอียด</p>
+        <span class="feature-tag">Validation</span>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+  <%- include('../partials/scripts') %>
+</body>
+</html>

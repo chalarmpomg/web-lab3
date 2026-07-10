@@ -1,0 +1,12 @@
+<nav class="site-nav">
+  <a href="/">หน้าแรก</a>
+  <% if (user) { %>
+    <a href="/dashboard">แดชบอร์ด</a>
+    <form action="/logout" method="POST" class="nav-logout">
+      <button type="submit">ออกจากระบบ</button>
+    </form>
+  <% } else { %>
+    <a href="/login">เข้าสู่ระบบ</a>
+    <a href="/register" class="btn-nav">สมัครสมาชิก</a>
+  <% } %>
+</nav>
